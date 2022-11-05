@@ -13,10 +13,26 @@ Array.prototype.map = function(projectionFunction){
     return results;
 }
 
+// map in another style(higher order function)
 
-const myResult = [1,2,3,4].map(item => item += 1);
+function copyArrayAndManipulate(array, instruction){
+    const output = [];
+    for(let i=0; i<array.length; i++){
+        output.push(instruction(array[i]));
+    }
+    return output;
+}
 
-console.log(myResult)
+const mapResult = [1,2,3].map(item => item += 1);
+
+const copiedArrayResult = copyArrayAndManipulate([1,2,3], function(number) {
+    number = number + 1;
+    return number;
+});
+
+// results
+console.log("map override result: ", mapResult);
+console.log("copiedArray result: ", copiedArrayResult);
 
 
 
